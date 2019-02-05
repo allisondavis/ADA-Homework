@@ -1,0 +1,136 @@
+---
+title: "MODULES 07 and 08"
+author: "Allison Davis"
+date: "February 4, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Module 07
+###*Additional Data Structures in R*
+
+* Matrix: a 2D structure of vectors
+    + vectors splits into rows *or* columns of same length.
+    + only one data class 
+    + created using **matrix()** function.
+    + **byrow = FALSE/TRUE** will fill the matrix column-wise/row-wise.
+    + can create a matrix from existing vectors using **bind()**
+        - cbind() for column-wise *or* rbind() for row-wise
+            [*rownames/colnames will not exist for cbind/rbind respectively*]
+
+
+* Array: multi-dimensional data structure
+    + still must all have same data class
+    + can specify levels 
+        - ex: a<- array(data=1:90, dim=c(5,6,3)) will return the numbers 1-90 in 5 rows, 6 columns, and 3 seperate visual levels (1-30, 31-60, 61-90)
+        
+* ***Cool tools:*** 
+    + Subsetting ([])
+        - can extract with singular position values, vectors, or functions
+    + overwriting: following subsetting, can assign new value or set of values
+    
+***
+***CHALLENGE 1***
+
+***
+    
+***
+***CHALLENGE 2***
+
+***
+
+***
+***CHALLENGE 3***
+
+***
+
+
+* Lists: mix of data structures
+    + lists created using **list()**
+        - can subset in lists using [[]]
+                    - can be used in conjuction with regular subsetting ([]) to access an element in an element
+
+***
+***CHALLENGE 4***
+
+***
+
+
+* Data frames: mix of data structure; rows = cases/observations and columns as variables 
+    + variables same units so same data class (vectors)
+    + **data.frame()** used to create one from scratch
+    + can select named columns using $ or [[]]
+    + can use rbind or cbind to add rows/columns
+        - can use $ or [[]] to add new variable
+                - ex: df$school <- c("UT", "A&M", "Rice")
+                - ex: df[["school"]] <- ("UT", "A&M")
+    + can use == to filter rows
+        - can use **&** or **|** for more specific filtering
+    + **[c("column header")]** will filter columns
+        - a *-* before "c" will return all columns *but* those specified
+        
+* Factors, Variable Conversion/Coercion, and Special Data Values
+    + factor: numeric codes that correspond to character value "levels"
+    + can convert between factor, character, and numeric using **as.character()**, **as.factor()**, **as.numeric()**
+        - character --> numeric turns it into NA (not available; used for missing data)
+                - can exclude NAs from calcs using **na.rm=TRUE**
+    + Inf/-Inf: numerical calc too extreme
+    + NaN: can't display calc results
+    
+***
+***CHALLENGE 5***
+
+***
+
+
+* Other Data Frame Like Structures
+    + data tables: enhancements to data frame
+        - need {data.table} package
+        - easier to filter, easier syntax, doesn't change characters into factors automatically
+    + "tibbles": enhancement to data frame
+        - need {tibble} package
+        - doesn't change characters into factors, doesn't do partial subsetting matches, shows characters of each header, can't recycle vectors other than 1 value
+
+
+
+## Module 08
+### Getting Data into R
+
+* Plain text files: best and oldest method for storing data
+    + loading: 
+        - **read.table()** can load data set
+                - *file=* file path
+                - *header=*  first row w/ field names
+                - *sep=* delimiter character
+                - *skip=* starts reading after n rows
+                - can also be file specific, like csv in place of table
+    + reading:
+        - **file.choose()** 
+                - csv:
+                - tsv/txt:
+        - {readr} package:
+
+* Excel Files:
+    + loading:
+        - {readxl} package: easiest method; yields a tibble
+        - {XLConnect} package: can also write/create back out to excel
+
+* Files stored on remote server (dropbox,github, google drive, etc)
+    + loading: 
+        - {curl} package: HTTP request to read from URL
+                - can read in csv or txt format
+    + importing: {readr} package
+        - works with http/https/ftp/fttps
+    + importing from dropbox: {rdrop2} package
+        - can also download files directly
+    +importing from UTbox: link or {repmis} package
+        -
+    +importing from google spreadsheet: {googlesheets} package
+        - can also download files directly
+* ***Cool tool:*** {googledrive} package allows you to search, download, upload and manipulate files.
+
+
+    
