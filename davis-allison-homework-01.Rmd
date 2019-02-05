@@ -14,17 +14,19 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * Matrix: a 2D structure of vectors
     + vectors splits into rows *or* columns of same length.
-    + only one data class 
+    + only one data class! 
     + created using **matrix()** function.
-    + **byrow = FALSE/TRUE** will fill the matrix column-wise/row-wise.
+    + **byrow = FALSE/TRUE** will fill the matrix column-wise/row-wise; FALSE is defualt.
     + can create a matrix from existing vectors using **bind()**
         - cbind() for column-wise *or* rbind() for row-wise
             [*rownames/colnames will not exist for cbind/rbind respectively*]
+                - all need to be the same class!
 
 
 * Array: multi-dimensional data structure
     + still must all have same data class
-    + can specify levels 
+    + can specify levels: dim=c(x,y,z)
+        -will create z seperate matrices of dimensions x and y
         - ex: a<- array(data=1:90, dim=c(5,6,3)) will return the numbers 1-90 in 5 rows, 6 columns, and 3 seperate visual levels (1-30, 31-60, 61-90)
         
 * ***Cool tools:*** 
@@ -51,7 +53,9 @@ knitr::opts_chunk$set(echo = TRUE)
 * Lists: mix of data structures
     + lists created using **list()**
         - can subset in lists using [[]]
-                    - can be used in conjuction with regular subsetting ([]) to access an element in an element
+                - can be used in conjuction with regular subsetting ([]) to access an element in an element
+        - single bracket alone ([]) will remove whole list elements
+                - ex: l[2:3] will pull out list element 2 and list element 3
 
 ***
 ***CHALLENGE 4***
@@ -61,6 +65,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 * Data frames: mix of data structure; rows = cases/observations and columns as variables 
     + variables same units so same data class (vectors)
+    + all the same length
     + **data.frame()** used to create one from scratch
     + can select named columns using $ or [[]]
     + can use rbind or cbind to add rows/columns
