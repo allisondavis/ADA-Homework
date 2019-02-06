@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
     + can create a matrix from existing vectors using **bind()**
         - cbind() for column-wise *or* rbind() for row-wise
             [*rownames/colnames will not exist for cbind/rbind respectively*]
-                - all need to be the same class!
+            - all need to be the same class!
 
 
 * Array: multi-dimensional data structure
@@ -38,24 +38,84 @@ knitr::opts_chunk$set(echo = TRUE)
 ***CHALLENGE 1***
 
 ***
+   
+    #creation of gettysburg character vector
+        
+        #one word character strings
+        
+```
+library (stringr)
+
+(gettysburg <- (str_split("Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.", " ", simplify = TRUE)))
+
+```
+        #removal of punctuation
+```
+(getty.pun <- gsub("[[:punct:]]", "", gettysburg))
+
+```
+
+    #every third element
     
+```
+length(getty.pun)
+(getty_3 <- getty.pun[seq(from=1, to=30, by=3)])
+
+```
+
 ***
 ***CHALLENGE 2***
 
 ***
+
+    #creation of matrix
+```
+(m <- matrix(data=1:80, nrow=8, ncol=10, byrow=FALSE))
+
+```
+    #subset: 2nd, 3rd, and 6th column, assigned to **x**
+```
+(x <- m[ , c(2,3,6)])
+
+```
+    #subset: 6th-8th row, assigned to **x**
+```
+(x <- m[6:8, ])
+
+```
+    #subset: r2, c2 to r6, c9, assigned to **x**
+```
+(x <- m[2:6, 2:9])
+
+```
+
 
 ***
 ***CHALLENGE 3***
 
 ***
 
+    #creation of array: 4D, 400-1, assigned to **a**
+```
+(a <- array(data=400:1, dim= c(5,5,4,4)))
+
+```
+    #subset: (1,1,1,2), (2,3,2,), and (1:5,1:5,3,3)
+```
+a[1,1,1,2]
+
+a[2,3,2, ]
+
+a[1:5,1:5,3,3]
+
+```
 
 * Lists: mix of data structures
     + lists created using **list()**
         - can subset in lists using [[]]
-                - can be used in conjuction with regular subsetting ([]) to access an element in an element
+            - can be used in conjuction with regular subsetting ([]) to access an element in an element
         - single bracket alone ([]) will remove whole list elements
-                - ex: l[2:3] will pull out list element 2 and list element 3
+            - ex: l[2:3] will pull out list element 2 and list element 3
 
 ***
 ***CHALLENGE 4***
@@ -70,8 +130,8 @@ knitr::opts_chunk$set(echo = TRUE)
     + can select named columns using $ or [[]]
     + can use rbind or cbind to add rows/columns
         - can use $ or [[]] to add new variable
-                - ex: df$school <- c("UT", "A&M", "Rice")
-                - ex: df[["school"]] <- ("UT", "A&M")
+            - ex: df$school <- c("UT", "A&M", "Rice")
+            - ex: df[["school"]] <- ("UT", "A&M")
     + can use == to filter rows
         - can use **&** or **|** for more specific filtering
     + **[c("column header")]** will filter columns
@@ -81,7 +141,7 @@ knitr::opts_chunk$set(echo = TRUE)
     + factor: numeric codes that correspond to character value "levels"
     + can convert between factor, character, and numeric using **as.character()**, **as.factor()**, **as.numeric()**
         - character --> numeric turns it into NA (not available; used for missing data)
-                - can exclude NAs from calcs using **na.rm=TRUE**
+            - can exclude NAs from calcs using **na.rm=TRUE**
     + Inf/-Inf: numerical calc too extreme
     + NaN: can't display calc results
     
@@ -89,6 +149,41 @@ knitr::opts_chunk$set(echo = TRUE)
 ***CHALLENGE 5***
 
 ***
+
+    #creation of primate taxonomy using lists
+
+```
+Platyrrhini <- c("Cebidae", "Atelidae", "Pitheciidae")
+
+Catarrhini <- c("Cercopithecidae", "Hylobatidae", "Hominidae")
+
+Anthropoidae <- matrix(data=(rbind(Platyrrhini, Catarrhini)), nrow=2, ncol=3, byrow=FALSE)
+rownames(Anthropoidae) <- c("Platyrrhini", "Catarrhini")
+
+Anthropoidae
+
+Tarsioidae <- c("Tarsiidae")
+
+Haplorhini <- list(Anthropoidae, Tarsioidae)
+names(Haplorhini) <- c("Anthropoidae", "Tarsioidae")
+
+Haplorhini
+
+Lorisoidae <- c("Lorisidae", "Galagidae")
+
+Lemuroidae <- c("Cheirogaleidae", "Lepilemuridae", "Indriidae", "Lemuridae", "Daubentoniidae")
+
+Strepsirhini <- list(Lorisoidae, Lemuroidae)
+names(Strepsirhini) <- c("Lorisoidae", "Lemuroidae")
+
+Strepsirhini
+
+Primates <- list(Haplorhini, Strepsirhini)
+names(Primates) <- c("Haplorhini", "Strepsirhini")
+
+Primates
+
+```
 
 
 * Other Data Frame Like Structures
@@ -107,15 +202,15 @@ knitr::opts_chunk$set(echo = TRUE)
 * Plain text files: best and oldest method for storing data
     + loading: 
         - **read.table()** can load data set
-                - *file=* file path
-                - *header=*  first row w/ field names
-                - *sep=* delimiter character
-                - *skip=* starts reading after n rows
-                - can also be file specific, like csv in place of table
+            - *file=* file path
+            - *header=*  first row w/ field names
+            - *sep=* delimiter character
+            - *skip=* starts reading after n rows
+            - can also be file specific, like csv in place of table
     + reading:
         - **file.choose()** 
-                - csv:
-                - tsv/txt:
+            - csv:
+            - tsv/txt:
         - {readr} package:
 
 * Excel Files:
@@ -126,14 +221,14 @@ knitr::opts_chunk$set(echo = TRUE)
 * Files stored on remote server (dropbox,github, google drive, etc)
     + loading: 
         - {curl} package: HTTP request to read from URL
-                - can read in csv or txt format
+            - can read in csv or txt format
     + importing: {readr} package
         - works with http/https/ftp/fttps
     + importing from dropbox: {rdrop2} package
         - can also download files directly
-    +importing from UTbox: link or {repmis} package
+    + importing from UTbox: link or {repmis} package
         -
-    +importing from google spreadsheet: {googlesheets} package
+    + importing from google spreadsheet: {googlesheets} package
         - can also download files directly
 * ***Cool tool:*** {googledrive} package allows you to search, download, upload and manipulate files.
 
