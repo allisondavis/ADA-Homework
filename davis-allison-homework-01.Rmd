@@ -43,21 +43,21 @@ knitr::opts_chunk$set(echo = TRUE)
         
         #one word character strings
         
-```
+```{r}
 library (stringr)
 
 (gettysburg <- (str_split("Four score and seven years ago our fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.", " ", simplify = TRUE)))
 
 ```
         #removal of punctuation
-```
+```{r}
 (getty.pun <- gsub("[[:punct:]]", "", gettysburg))
 
 ```
 
     #every third element
     
-```
+```{r}
 length(getty.pun)
 (getty_3 <- getty.pun[seq(from=1, to=30, by=3)])
 
@@ -69,22 +69,22 @@ length(getty.pun)
 ***
 
     #creation of matrix
-```
+```{r}
 (m <- matrix(data=1:80, nrow=8, ncol=10, byrow=FALSE))
 
 ```
     #subset: 2nd, 3rd, and 6th column, assigned to **x**
-```
+```{r}
 (x <- m[ , c(2,3,6)])
 
 ```
     #subset: 6th-8th row, assigned to **x**
-```
+```{r}
 (x <- m[6:8, ])
 
 ```
     #subset: r2, c2 to r6, c9, assigned to **x**
-```
+```{r}
 (x <- m[2:6, 2:9])
 
 ```
@@ -96,12 +96,12 @@ length(getty.pun)
 ***
 
     #creation of array: 4D, 400-1, assigned to **a**
-```
+```{r}
 (a <- array(data=400:1, dim= c(5,5,4,4)))
 
 ```
     #subset: (1,1,1,2), (2,3,2,), and (1:5,1:5,3,3)
-```
+```{r}
 a[1,1,1,2]
 
 a[2,3,2, ]
@@ -124,7 +124,7 @@ a[1:5,1:5,3,3]
 
     #creation of primate taxonomy using lists
 
-```
+```{r}
 Platyrrhini <- c("Cebidae", "Atelidae", "Pitheciidae")
 
 Catarrhini <- c("Cercopithecidae", "Hylobatidae", "Hominidae")
@@ -185,27 +185,27 @@ Primates
 ***
 
     #creation of a matrix: 5x3, row-wise
-```
+```{r}
 (numeros <- matrix(data=c(3,0,1,23,1,2,33,1,1,42,0,1,41,0,2), nrow=5, ncol=3, byrow=TRUE))
 
 ```
     #matrix to dataframe
-```
+```{r}
 (num.df <- data.frame(numeros))
 
 ```
     #2nd column into logical-valued
-```
+```{r}
 as.logical(num.df[ ,2])
 
 ```
     #3rd column into factor valued
-```
+```{r}
 as.factor(num.df[ ,3])
 
 ```
     #data type
-```
+```{r}
 str(num.df)
 
 ```
@@ -250,7 +250,7 @@ str(num.df)
     + importing from dropbox: {rdrop2} package
         - can also download files directly
     + importing from UTbox: link or {repmis} package
-        -
+        -BLAH
     + importing from google spreadsheet: {googlesheets} package
         - can also download files directly
 * ***Cool tool:*** {googledrive} package allows you to search, download, upload and manipulate files.
