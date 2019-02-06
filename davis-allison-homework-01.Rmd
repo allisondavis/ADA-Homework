@@ -122,34 +122,6 @@ a[1:5,1:5,3,3]
 
 ***
 
-
-* Data frames: mix of data structure; rows = cases/observations and columns as variables 
-    + variables same units so same data class (vectors)
-    + all the same length
-    + **data.frame()** used to create one from scratch
-    + can select named columns using $ or [[]]
-    + can use rbind or cbind to add rows/columns
-        - can use $ or [[]] to add new variable
-            - ex: df$school <- c("UT", "A&M", "Rice")
-            - ex: df[["school"]] <- ("UT", "A&M")
-    + can use == to filter rows
-        - can use **&** or **|** for more specific filtering
-    + **[c("column header")]** will filter columns
-        - a *-* before "c" will return all columns *but* those specified
-        
-* Factors, Variable Conversion/Coercion, and Special Data Values
-    + factor: numeric codes that correspond to character value "levels"
-    + can convert between factor, character, and numeric using **as.character()**, **as.factor()**, **as.numeric()**
-        - character --> numeric turns it into NA (not available; used for missing data)
-            - can exclude NAs from calcs using **na.rm=TRUE**
-    + Inf/-Inf: numerical calc too extreme
-    + NaN: can't display calc results
-    
-***
-***CHALLENGE 5***
-
-***
-
     #creation of primate taxonomy using lists
 
 ```
@@ -185,7 +157,58 @@ Primates
 
 ```
 
+* Data frames: mix of data structure; rows = cases/observations and columns as variables 
+    + variables same units so same data class (vectors)
+    + all the same length
+    + **data.frame()** used to create one from scratch
+    + can select named columns using $ or [[]]
+    + can use rbind or cbind to add rows/columns
+        - can use $ or [[]] to add new variable
+            - ex: df$school <- c("UT", "A&M", "Rice")
+            - ex: df[["school"]] <- ("UT", "A&M")
+    + can use == to filter rows
+        - can use **&** or **|** for more specific filtering
+    + **[c("column header")]** will filter columns
+        - a *-* before "c" will return all columns *but* those specified
+        
+* Factors, Variable Conversion/Coercion, and Special Data Values
+    + factor: numeric codes that correspond to character value "levels"
+    + can convert between factor, character, and numeric using **as.character()**, **as.factor()**, **as.numeric()**
+        - character --> numeric turns it into NA (not available; used for missing data)
+            - can exclude NAs from calcs using **na.rm=TRUE**
+    + Inf/-Inf: numerical calc too extreme
+    + NaN: can't display calc results
+    
+***
+***CHALLENGE 5***
 
+***
+
+    #creation of a matrix: 5x3, row-wise
+```
+(numeros <- matrix(data=c(3,0,1,23,1,2,33,1,1,42,0,1,41,0,2), nrow=5, ncol=3, byrow=TRUE))
+
+```
+    #matrix to dataframe
+```
+(num.df <- data.frame(numeros))
+
+```
+    #2nd column into logical-valued
+```
+as.logical(num.df[ ,2])
+
+```
+    #3rd column into factor valued
+```
+as.factor(num.df[ ,3])
+
+```
+    #data type
+```
+str(num.df)
+
+```
 * Other Data Frame Like Structures
     + data tables: enhancements to data frame
         - need {data.table} package
